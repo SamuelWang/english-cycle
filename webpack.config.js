@@ -14,7 +14,7 @@ module.exports = (env, options) => {
     mode: devMode ? 'development' : 'production',
     entry: './src/index.js',
     output: {
-      filename: 'main.js',
+      filename: 'main.[contenthash].js',
       path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
@@ -25,10 +25,13 @@ module.exports = (env, options) => {
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         title: 'English Cycle',
+        meta: {
+          viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'
+        },
       }),
       new MiniCssExtractPlugin({
-        filename: devMode ? '[name].css' : '[name].[hash].css',
-        chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+        filename: devMode ? '[name].css' : '[name].[contenthash].css',
+        chunkFilename: devMode ? '[id].css' : '[id].[contenthash].css',
       }),
       new FaviconsWebpackPlugin('./src/images/favicon.png'),
       new VueLoaderPlugin(),
