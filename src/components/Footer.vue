@@ -1,5 +1,5 @@
 <template>
-  <footer class="text-muted">
+  <footer class="border-top text-muted py-2">
     <div class="container-md">
       <p>
         English Cycle &copy; 

@@ -14,7 +14,7 @@ module.exports = (env, options) => {
     mode: devMode ? 'development' : 'production',
     entry: './src/index.js',
     output: {
-      filename: 'main.[contenthash].js',
+      filename: devMode ? 'main.js' : 'main.[contenthash].js',
       path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
