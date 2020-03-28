@@ -8,7 +8,7 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = (env, options) => {
-  const devMode = options.mode !== 'production';
+  const devMode = process.env.NODE_ENV !== 'production';
 
   let configurations = {
     mode: devMode ? 'development' : 'production',
