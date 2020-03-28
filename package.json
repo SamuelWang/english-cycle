@@ -1,11 +1,12 @@
 {
   "name": "english-cycle",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A project for help to learn English.",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open",
+    "express": "node server/app.js",
     "build": "webpack --mode production"
   },
   "repository": {
@@ -22,6 +23,9 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.7.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"
