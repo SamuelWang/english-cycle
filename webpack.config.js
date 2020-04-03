@@ -10,6 +10,8 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
+const appSettings = require('./app-settings');
+
 const devMode = process.env.NODE_ENV !== 'production';
 
 let configurations = {
@@ -26,10 +28,8 @@ let configurations = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'English Cycle',
-      meta: {
-        viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no',
-      },
+      template: path.resolve(__dirname, 'src/index.html'),
+      googleClientId: appSettings.google.clientId
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[contenthash].css',
