@@ -3,7 +3,6 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const app = express();
-const port = process.env.PORT || 3000;
 
 // Use JSON middleware
 app.use(express.json());
@@ -15,6 +14,6 @@ app.use(cookieParser());
 app.use(helmet());
 
 // Set dist files as static files
-app.use(express.static(path.resolve(__dirname, '../dist')))
+//app.use(express.static(path.resolve(__dirname, '../dist')));
 
-app.listen(port, () => console.log(`Application listening on port ${port}!`));
+module.exports = app;
