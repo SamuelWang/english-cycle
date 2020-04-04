@@ -10,26 +10,19 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const appSettings = require('./app-settings');
-
 const devMode = process.env.NODE_ENV !== 'production';
 
 let configurations = {
   mode: devMode ? 'development' : 'production',
-  entry: [
-    'webpack-hot-middleware/client',
-    './src/index.js',
-  ],
+  entry: ['./src/index.js'],
   output: {
     filename: devMode ? 'main.js' : 'main.[hash].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/',
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/index.html'),
-      googleClientId: appSettings.google.clientId
     }),
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[contenthash].css',
@@ -37,9 +30,6 @@ let configurations = {
     }),
     new FaviconsWebpackPlugin('./src/images/favicon.png'),
     new VueLoaderPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
   ],
   module: {
     rules: [
@@ -66,6 +56,9 @@ let configurations = {
 
 if (devMode) {
   configurations.devtool = 'source-map';
+  configurations.devServer = {
+    contentBase: path.resolve(__dirname, 'dist')
+  };
 } else {
   configurations.optimization = {
     splitChunks: {

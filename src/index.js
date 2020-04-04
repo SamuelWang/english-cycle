@@ -4,15 +4,14 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import App from './components/App.vue';
 import router from './router';
 import store from './store';
-import appSettings from '../app-settings'
+import appSettings from './../app-settings';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
-// Import firebase and its modules
+// Import Firebase
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/firestore";
 
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
@@ -40,7 +39,7 @@ function initFirebase() {
     apiKey: appSettings.firebase.apiKey,
     authDomain: appSettings.firebase.authDomain,
     databaseURL: appSettings.firebase.databaseURL,
-    projectId: appSettings.firebase.projectId,
+    projectId: appSettings.projectId,
     appId: appSettings.firebase.appId
   };
 
