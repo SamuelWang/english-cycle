@@ -50,6 +50,10 @@ let configurations = {
         test: /\.vue/,
         loader: 'vue-loader',
       },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: 'file-loader',
+      },
     ],
   },
 };
@@ -57,7 +61,12 @@ let configurations = {
 if (devMode) {
   configurations.devtool = 'source-map';
   configurations.devServer = {
-    contentBase: path.resolve(__dirname, 'dist')
+    contentBase: path.resolve(__dirname, 'dist'),
+    historyApiFallback: {
+      rewrites: [
+        { from: /^\/.+$/, to: '/' },
+      ],
+    },
   };
 } else {
   configurations.optimization = {

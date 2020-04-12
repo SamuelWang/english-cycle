@@ -8,6 +8,12 @@
   </div>
 </template>
 
+<style>
+main {
+  min-height: 70vh;
+}
+</style>
+
 <script>
 import Header from './Header.vue';
 import Footer from './Footer.vue';

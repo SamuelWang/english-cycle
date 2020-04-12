@@ -13,10 +13,10 @@
           </b-navbar-nav>
 
           <b-navbar-nav class="ml-auto">
-            <b-nav-item href="#" v-if="!isLoggedIn">Login</b-nav-item>
+            <b-nav-item :to="{ path: 'login' }" v-if="!isLoggedIn">Login</b-nav-item>
 
             <b-nav-item-dropdown :text="userName" right v-if="isLoggedIn">
-              <b-dropdown-item href="#">Logout</b-dropdown-item>
+              <b-dropdown-item href="#" v-on:click="signOut">Logout</b-dropdown-item>
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -34,6 +34,11 @@ export default {
     },
     userName() {
       return this.$store.state.user.name;
+    }
+  },
+  methods: {
+    signOut() {
+      this.$services().signOut();
     }
   }
 };
