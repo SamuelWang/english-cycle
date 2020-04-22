@@ -32,7 +32,7 @@ const app = new Vue({
 
 app.$store.dispatch('setInitialPath', app.$route.path);
 
-// Try to use previous credential to login again.a
+// Try to use previous credential to login again.
 signInUserWithCredential();
 
 function initAppNode() {
