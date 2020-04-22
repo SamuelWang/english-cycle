@@ -25,14 +25,14 @@ initAppNode();
 
 const app = new Vue({
   el: '#app',
-  render: h => h(App),
+  render: (h) => h(App),
   router,
-  store
+  store,
 });
 
 app.$store.dispatch('setInitialPath', app.$route.path);
 
-// Try to use previous credential to login again.
+// Try to use previous credential to login again.a
 signInUserWithCredential();
 
 function initAppNode() {
@@ -48,7 +48,7 @@ function initFirebase() {
     authDomain: appSettings.firebase.authDomain,
     databaseURL: appSettings.firebase.databaseURL,
     projectId: appSettings.projectId,
-    appId: appSettings.firebase.appId
+    appId: appSettings.firebase.appId,
   };
 
   firebase.initializeApp(firebaseConfig);
@@ -61,7 +61,7 @@ function signInUserWithCredential() {
     firebase
       .auth()
       .signInWithCredential(credential)
-      .then(userCredential => {
+      .then((userCredential) => {
         app
           .$services()
           .signedInHandler(userCredential)
@@ -76,13 +76,13 @@ function signInUserWithCredential() {
               app.$router.push('/portal');
             }
           })
-          .catch(error => {
+          .catch((error) => {
             console.error(`Signing in user with credential failed.
             Error Code: ${error.code}
             Error Message: ${error.message}`);
           });
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(`Signing in user with credential failed.
         Error Code: ${error.code}
         Error Message: ${error.message}`);
