@@ -18,6 +18,7 @@ let configurations = {
   output: {
     filename: devMode ? 'main.js' : 'main.[hash].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -63,9 +64,7 @@ if (devMode) {
   configurations.devServer = {
     contentBase: path.resolve(__dirname, 'dist'),
     historyApiFallback: {
-      rewrites: [
-        { from: /^\/.+$/, to: '/' },
-      ],
+      rewrites: [{ from: /^\/.+$/, to: '/' }],
     },
   };
 } else {

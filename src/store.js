@@ -7,9 +7,10 @@ const base = {
   state: {
     initialPath: '',
     user: {
+      uid: '',
       email: '',
-      name: ''
-    }
+      name: '',
+    },
   },
   mutations: {
     SET_INITIAL_PATH(state, path) {
@@ -17,13 +18,13 @@ const base = {
     },
     SET_USER(state, user) {
       state.user = user;
-    }
+    },
   },
   actions: {
     clearUser({ commit }) {
       commit('SET_USER', {
         email: '',
-        name: ''
+        name: '',
       });
     },
     setInitialPath({ commit }, path) {
@@ -31,8 +32,8 @@ const base = {
     },
     updateUser({ commit }, user) {
       commit('SET_USER', user);
-    }
-  }
+    },
+  },
 };
 
 export default new Vuex.Store(base);

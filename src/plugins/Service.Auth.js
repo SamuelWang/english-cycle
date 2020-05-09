@@ -14,12 +14,12 @@ export default {
         self
           .$services()
           .signOut()
-          .then(function() {
+          .then(function () {
             reject(
               new BaseError('auth/invalid-credential', 'Invalid credential.')
             );
           })
-          .catch(error => {
+          .catch((error) => {
             reject(error);
           });
       }
@@ -30,10 +30,12 @@ export default {
 
     try {
       let credentialString = localStorage.getItem('ec:auth:credential');
-      credential = firebase.auth.AuthCredential.fromJSON(credentialString);
+
+      if (credentialString) {
+        credential = firebase.auth.AuthCredential.fromJSON(credentialString);
+      }
     } catch (error) {
       console.error(`Getting credential failed.
-      Error Code: ${error.code}
       Error Message: ${error.message}`);
     }
 
@@ -46,18 +48,18 @@ export default {
       firebase
         .auth()
         .signInWithPopup(provider)
-        .then(function(userCredential) {
+        .then(function (userCredential) {
           self
             .$services()
             .signedInHandler(userCredential)
             .then(() => {
               resolve();
             })
-            .catch(error => {
+            .catch((error) => {
               reject(error);
             });
         })
-        .catch(error => {
+        .catch((error) => {
           let credential = error.credential;
 
           console.error(`Login with provider by redirect failed. 
@@ -84,8 +86,9 @@ export default {
 
       if (user) {
         self.$store.dispatch('updateUser', {
+          uid: user.uid,
           email: user.email,
-          name: user.displayName
+          name: user.displayName,
         });
 
         resolve();
@@ -108,7 +111,7 @@ export default {
 
           resolve();
         })
-        .catch(error => {
+        .catch((error) => {
           let errorCode = error.code;
           let errorMessage = error.message;
 
@@ -128,5 +131,5 @@ export default {
       Error Code: ${error.code}
       Error Message: ${error.message}`);
     }
-  }
+  },
 };
