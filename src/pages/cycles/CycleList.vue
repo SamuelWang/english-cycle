@@ -12,7 +12,7 @@
         >
       </b-dropdown>
 
-      <b-list-group class="mt-3">
+      <b-list-group class="mt-3" v-show="cycles.length">
         <b-list-group-item v-for="cycle in cycles" :key="cycle.id">
           <h3>{{ getCycleTitle(cycle) }}</h3>
           <div class="mb-1" v-show="cycle.lastReviewDate">
@@ -40,6 +40,10 @@
           </div>
         </b-list-group-item>
       </b-list-group>
+
+      <div class="my-5 text-center" v-show="!cycles.length">
+        <h3>There is no cycles.</h3>
+      </div>
 
       <b-modal
         id="modal-delete"
