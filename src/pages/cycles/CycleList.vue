@@ -111,6 +111,8 @@ export default {
       switch (cycle.type.toLowerCase()) {
         case 'vocabulary':
           return cycle.vocabulary;
+        case 'sentence':
+          return cycle.sentence;
       }
 
       return '';
@@ -122,6 +124,9 @@ export default {
       switch (cycle.type.toLowerCase()) {
         case 'vocabulary':
           this.$router.push(`/cycles/review-vocabulary/${cycle.id}`);
+          break;
+        case 'sentence':
+          this.$router.push(`/cycles/review-sentence/${cycle.id}`);
           break;
       }
     },
