@@ -33,6 +33,8 @@ const SentenceCycle = class SentenceCycle extends Cycle {
 const ReviewLog = class ReviewLog {
   constructor() {
     this.reviewedDate = null;
+    this.createdUser = '';
+    this.createdDate = null;
   }
 };
 
@@ -106,6 +108,8 @@ const ReviewLogConverter = {
       reviewedDate: reviewLog.reviewedDate
         ? firebase.firestore.Timestamp.fromDate(reviewLog.reviewedDate)
         : null,
+      createdUser: reviewLog.createdUser,
+      createdDate: firebase.firestore.Timestamp.fromDate(reviewLog.createdDate),
     };
   },
   fromFirestore: function (snapshot, options) {
@@ -114,6 +118,8 @@ const ReviewLogConverter = {
     reviewLog.reviewedDate = data.reviewedDate
       ? data.reviewedDate.toDate()
       : null;
+    cycle.createdUser = data.createdUser;
+    cycle.createdDate = data.createdDate.toDate();
 
     return reviewLog;
   },

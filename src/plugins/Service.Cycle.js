@@ -41,6 +41,7 @@ export default {
       throw new BaseError('invalid-argument', 'The cycle must be Cycle type.');
     }
 
+    const self = this;
     const db = firebase.firestore();
     const cycleDocRef = db
       .collection('cycles')
@@ -75,6 +76,8 @@ export default {
         .then(function () {
           const reviewLog = new ReviewLog();
           reviewLog.reviewedDate = now;
+          reviewLog.createdUser = self.$store.state.user.uid;
+          reviewLog.createdDate = new Date();
 
           cycleDocRef
             .collection('logs')
@@ -104,14 +107,28 @@ export default {
     return new Promise((resolve, reject) => {
       const db = firebase.firestore();
       const cycleDocRef = db.collection('cycles').doc(id);
+      const cycleLogRef = db.collection('cycles').doc(id).collection('logs');
 
-      cycleDocRef
-        .delete()
+      cycleLogRef
+        .get()
+        .then((querySnapshot) => {
+          return db.runTransaction((transaction) => {
+            const deleteTasks = [];
+
+            querySnapshot.forEach((doc) => {
+              deleteTasks.push(transaction.delete(doc.ref));
+            });
+
+            deleteTasks.push(transaction.delete(cycleDocRef));
+
+            return Promise.all(deleteTasks);
+          });
+        })
         .then(() => {
           resolve();
         })
         .catch((error) => {
-          console.error(`Deleting cycle doc ${id} failed.
+          console.error(`Deleting the cycle ${id} failed.
           Error Code: ${error.code}
           Error Message: ${error.message}`);
 
