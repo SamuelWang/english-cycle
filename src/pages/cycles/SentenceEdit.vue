@@ -89,8 +89,7 @@ export default {
       this.$services()
         .addCycle(this.cycleData)
         .then((docId) => {
-          //self.$router.push(`/cycles/review-sentence/${docId}`);
-          self.$router.push(`/cycles`);
+          self.$router.push(`/cycles/review-sentence/${docId}`);
         })
         .catch((error) => {
           alert('Something went wrong!');

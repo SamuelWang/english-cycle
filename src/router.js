@@ -6,6 +6,7 @@ import CycleList from './pages/cycles/CycleList.vue';
 import VocabularyEdit from './pages/cycles/VocabularyEdit.vue';
 import VocabularyReview from './pages/cycles/VocabularyReview.vue';
 import SentenceEdit from './pages/cycles/SentenceEdit.vue';
+import SentenceReview from './pages/cycles/SentenceReview.vue';
 
 const routes = [
   { path: '/', component: Index },
@@ -15,6 +16,7 @@ const routes = [
   { path: '/cycles/edit-vocabulary/:id?', component: VocabularyEdit },
   { path: '/cycles/review-vocabulary/:id', component: VocabularyReview },
   { path: '/cycles/edit-sentence/:id?', component: SentenceEdit },
+  { path: '/cycles/review-sentence/:id', component: SentenceReview },
 ];
 
 const router = new VueRouter({
