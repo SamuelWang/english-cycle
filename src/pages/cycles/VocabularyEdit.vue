@@ -67,6 +67,7 @@ export default {
     onSubmit() {
       const self = this;
 
+      this.loading = true;
       this.$services()
         .addCycle(this.cycleData)
         .then((docId) => {
@@ -74,6 +75,9 @@ export default {
         })
         .catch((error) => {
           alert('Something went wrong!');
+        })
+        .finally(() => {
+          self.loading = false;
         });
     },
   },

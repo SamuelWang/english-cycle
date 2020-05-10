@@ -4,10 +4,12 @@
     <loading v-show="loading"></loading>
     <div class="content" v-show="!loading">
       <b-dropdown text="Add" variant="primary" class="my-2">
-        <b-dropdown-item :to="{ path: 'cycles/edit-vocabulary' }"
+        <b-dropdown-item :to="{ path: '/cycles/edit-vocabulary' }"
           >Vocabulary</b-dropdown-item
         >
-        <b-dropdown-item>Sentence</b-dropdown-item>
+        <b-dropdown-item :to="{ path: '/cycles/edit-sentence' }"
+          >Sentence</b-dropdown-item
+        >
       </b-dropdown>
 
       <b-list-group class="mt-3">

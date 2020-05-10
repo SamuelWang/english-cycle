@@ -21,6 +21,15 @@ const VocabularyCycle = class VocabularyCycle extends Cycle {
   }
 };
 
+const SentenceCycle = class SentenceCycle extends Cycle {
+  constructor() {
+    super();
+    this.type = 'Sentence';
+    this.sentence = '';
+    this.translation = '';
+  }
+};
+
 const ReviewLog = class ReviewLog {
   constructor() {
     this.reviewedDate = null;
@@ -47,6 +56,10 @@ const CycleConverter = {
       case 'vocabulary':
         data.vocabulary = cycle.vocabulary;
         break;
+      case 'sentence':
+        data.sentence = cycle.sentence;
+        data.translation = cycle.translation;
+        break;
     }
 
     return data;
@@ -59,6 +72,11 @@ const CycleConverter = {
       case 'vocabulary':
         cycle = new VocabularyCycle();
         cycle.vocabulary = data.vocabulary;
+        break;
+      case 'sentence':
+        cycle = new SentenceCycle();
+        cycle.sentence = data.sentence;
+        cycle.translation = data.translation;
         break;
       default:
         cycle = new Cycle();
@@ -104,7 +122,8 @@ const ReviewLogConverter = {
 export {
   Cycle,
   VocabularyCycle,
-  CycleConverter,
+  SentenceCycle,
   ReviewLog,
+  CycleConverter,
   ReviewLogConverter,
 };

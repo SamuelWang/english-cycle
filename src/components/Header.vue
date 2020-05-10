@@ -9,11 +9,11 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav v-if="isLoggedIn">
             <b-nav-item href="#" v-show="false">Backlogs</b-nav-item>
-            <b-nav-item href="#" :to="{ path: 'cycles' }">Cycles</b-nav-item>
+            <b-nav-item href="#" :to="{ path: '/cycles' }">Cycles</b-nav-item>
           </b-navbar-nav>
 
           <b-navbar-nav class="ml-auto">
-            <b-nav-item :to="{ path: 'login' }" v-if="!isLoggedIn"
+            <b-nav-item :to="{ path: '/login' }" v-if="!isLoggedIn"
               >Login</b-nav-item
             >
 
