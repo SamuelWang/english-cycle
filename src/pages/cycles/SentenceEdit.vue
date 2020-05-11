@@ -86,17 +86,32 @@ export default {
       const self = this;
 
       this.loading = true;
-      this.$services()
-        .addCycle(this.cycleData)
-        .then((docId) => {
-          self.$router.push(`/cycles/review-sentence/${docId}`);
-        })
-        .catch((error) => {
-          alert('Something went wrong!');
-        })
-        .finally(() => {
-          self.loading = false;
-        });
+
+      if (this.isCreating) {
+        this.$services()
+          .addCycle(this.cycleData)
+          .then((docId) => {
+            self.$router.push(`/cycles/review-sentence/${docId}`);
+          })
+          .catch((error) => {
+            alert('Something went wrong!');
+          })
+          .finally(() => {
+            self.loading = false;
+          });
+      } else {
+        this.$services()
+          .updateCycle(this.cycleData)
+          .then((docId) => {
+            self.$router.push(`/cycles`);
+          })
+          .catch((error) => {
+            alert('Something went wrong!');
+          })
+          .finally(() => {
+            self.loading = false;
+          });
+      }
     },
   },
   created() {
@@ -105,7 +120,28 @@ export default {
 
     this.$services()
       .authenticateUser()
-      .then(() => {})
+      .then(() => {
+        if (sentenceId) {
+          self.loading = true;
+          self.isCreating = false;
+          self
+            .$services()
+            .getCycleById(sentenceId)
+            .then((cycle) => {
+              self.loading = false;
+              self.cycleData = cycle;
+            })
+            .catch((error) => {
+              if (error.code === 'not-found') {
+                console.warn(`The cycle ${vocabularyId} is not existing.`);
+              } else {
+                console.error(error.message, error);
+              }
+
+              self.$router.push('/cycles');
+            });
+        }
+      })
       .catch((error) => {
         alert('Something went wrong.');
       });
