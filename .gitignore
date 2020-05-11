@@ -1,3 +1,5 @@
 node_modules
 app-settings.json
 dist
+public
+*.cache
