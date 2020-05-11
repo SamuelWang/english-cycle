@@ -26,8 +26,11 @@
           >
           <div class="mt-3">
             <b-dropdown text="Actions" variant="outline-primary">
-              <b-dropdown-item href="#" @click="review(cycle)"
+              <b-dropdown-item href="#" @click="reviewCycle(cycle)"
                 >Review</b-dropdown-item
+              >
+              <b-dropdown-item href="#" @click="editCycle(cycle)"
+                >Edit</b-dropdown-item
               >
               <b-dropdown-item
                 href="#"
@@ -93,6 +96,16 @@ export default {
     deletingCycle(cycle) {
       this.deletingCycleId = cycle.id;
     },
+    editCycle(cycle) {
+      switch (cycle.type.toLowerCase()) {
+        case 'vocabulary':
+          this.$router.push(`/cycles/edit-vocabulary/${cycle.id}`);
+          break;
+        case 'sentence':
+          this.$router.push(`/cycles/edit-sentence/${cycle.id}`);
+          break;
+      }
+    },
     getCycleList() {
       const self = this;
 
@@ -120,7 +133,7 @@ export default {
     isWaitForReview(cycle) {
       return Date.now() >= cycle.nextReviewDate;
     },
-    review(cycle) {
+    reviewCycle(cycle) {
       switch (cycle.type.toLowerCase()) {
         case 'vocabulary':
           this.$router.push(`/cycles/review-vocabulary/${cycle.id}`);

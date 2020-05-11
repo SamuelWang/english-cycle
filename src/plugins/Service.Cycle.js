@@ -193,4 +193,28 @@ export default {
         });
     });
   },
+  updateCycle(cycle) {
+    if (!cycle instanceof Cycle) {
+      throw new BaseError('invalid-argument', 'The cycle must be Cycle type.');
+    }
+
+    const db = firebase.firestore();
+
+    return new Promise((resolve, reject) => {
+      db.collection('cycles')
+        .doc(cycle.id)
+        .withConverter(CycleConverter)
+        .set(cycle)
+        .then(function () {
+          resolve();
+        })
+        .catch(function (error) {
+          console.error(`Updating cycle doc failed.
+          Error Code: ${error.code}
+          Error Message: ${error.message}`);
+
+          reject(error);
+        });
+    });
+  },
 };

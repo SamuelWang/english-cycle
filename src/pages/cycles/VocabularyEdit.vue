@@ -27,9 +27,9 @@
           <b-form-group label="Description" label-for="input-desc">
             <quill-editor v-model="cycleData.description"></quill-editor>
           </b-form-group>
-          <b-button type="submit" variant="primary">{{
-            submittingText
-          }}</b-button>
+          <b-button type="submit" variant="primary">
+            {{ submittingText }}
+          </b-button>
         </b-form>
       </validation-observer>
     </div>
@@ -68,17 +68,32 @@ export default {
       const self = this;
 
       this.loading = true;
-      this.$services()
-        .addCycle(this.cycleData)
-        .then((docId) => {
-          self.$router.push(`/cycles/review-vocabulary/${docId}`);
-        })
-        .catch((error) => {
-          alert('Something went wrong!');
-        })
-        .finally(() => {
-          self.loading = false;
-        });
+
+      if (this.isCreating) {
+        this.$services()
+          .addCycle(this.cycleData)
+          .then((docId) => {
+            self.$router.push(`/cycles/review-vocabulary/${docId}`);
+          })
+          .catch((error) => {
+            alert('Something went wrong!');
+          })
+          .finally(() => {
+            self.loading = false;
+          });
+      } else {
+        this.$services()
+          .updateCycle(this.cycleData)
+          .then((docId) => {
+            self.$router.push(`/cycles`);
+          })
+          .catch((error) => {
+            alert('Something went wrong!');
+          })
+          .finally(() => {
+            self.loading = false;
+          });
+      }
     },
   },
   created() {
