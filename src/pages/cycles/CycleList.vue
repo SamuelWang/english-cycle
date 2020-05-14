@@ -131,7 +131,12 @@ export default {
       return '';
     },
     isWaitForReview(cycle) {
-      return Date.now() >= cycle.nextReviewDate;
+      const shortDate = new Date(
+        cycle.nextReviewDate.getFullYear(),
+        cycle.nextReviewDate.getMonth(),
+        cycle.nextReviewDate.getDate()
+      );
+      return Date.now() >= shortDate;
     },
     reviewCycle(cycle) {
       switch (cycle.type.toLowerCase()) {
