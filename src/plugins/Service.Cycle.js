@@ -57,11 +57,17 @@ export default {
       switch (cycle.reviewedCount) {
         case 1:
           // Next time is the second review, it is 7 days later.
-          cycle.nextReviewDate = moment().add(7, 'days').toDate();
+          cycle.nextReviewDate = moment()
+            .add(7, 'days')
+            .startOf('day')
+            .toDate();
           break;
         case 2:
           // Next time is the third review, it is 30 days later.
-          cycle.nextReviewDate = moment().add(30, 'days').toDate();
+          cycle.nextReviewDate = moment()
+            .add(30, 'days')
+            .startOf('day')
+            .toDate();
           break;
         case 3:
           // When this cycle has been reviewed three times, it ends the cycle.
