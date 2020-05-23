@@ -70,7 +70,7 @@ export default {
   },
   methods: {
     review() {
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 3; i++) {
         this.questions.push(new SentenceCycle());
       }
 

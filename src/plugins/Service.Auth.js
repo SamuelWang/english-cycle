@@ -65,9 +65,7 @@ export default {
           console.error(`Login with provider by redirect failed. 
             Error Code: ${error.code}
             Error Message: ${error.message}
-            User Email: ${error.email}
-            Provider ID: ${credential.providerId}
-            Credential Type: ${credential.signInMethod}`);
+            User Email: ${error.email}`);
 
           reject(error);
         });
