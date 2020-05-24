@@ -4,7 +4,11 @@
     <loading v-show="loading"></loading>
     <div class="content" v-show="!loading">
       <validation-observer v-slot="{ handleSubmit }">
-        <b-form :novalidate="true" @submit.prevent="handleSubmit(onSubmit)">
+        <b-form
+          :novalidate="true"
+          @submit.prevent="handleSubmit(onSubmit)"
+          autocomplete="off"
+        >
           <validation-provider
             name="Sentence"
             rules="required"

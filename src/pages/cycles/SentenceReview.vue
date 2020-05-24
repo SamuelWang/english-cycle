@@ -19,7 +19,11 @@
         >
         <b-card title="Review" v-if="reviewing">
           <validation-observer v-slot="{ handleSubmit }">
-            <b-form :novalidate="true" @submit.prevent="handleSubmit(onSubmit)">
+            <b-form
+              :novalidate="true"
+              @submit.prevent="handleSubmit(onSubmit)"
+              autocomplete="off"
+            >
               <p>Type this sentence 10 times for reviewing sentence.</p>
               <p>{{ cycleData.translation }}</p>
               <validation-provider

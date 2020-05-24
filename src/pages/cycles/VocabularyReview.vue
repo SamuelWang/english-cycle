@@ -17,7 +17,11 @@
         >
         <b-card title="Review" v-if="reviewing">
           <validation-observer v-slot="{ handleSubmit }">
-            <b-form :novalidate="true" @submit.prevent="handleSubmit(onSubmit)">
+            <b-form
+              :novalidate="true"
+              @submit.prevent="handleSubmit(onSubmit)"
+              autocomplete="off"
+            >
               <div class="mb-2">
                 Type this vocabulary 10 times for reviewing vocabulary.
               </div>
