@@ -16,7 +16,7 @@ export default {
 
     const db = firebase.firestore();
 
-    cycle.nextReviewDate = moment().add(1, 'days').toDate();
+    cycle.nextReviewDate = moment().add(1, 'days').startOf('day').toDate();
     cycle.createdUser = this.$store.state.user.uid;
     cycle.createdDate = new Date();
 
