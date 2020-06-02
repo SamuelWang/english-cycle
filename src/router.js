@@ -7,6 +7,7 @@ import VocabularyEdit from './pages/cycles/VocabularyEdit.vue';
 import VocabularyReview from './pages/cycles/VocabularyReview.vue';
 import SentenceEdit from './pages/cycles/SentenceEdit.vue';
 import SentenceReview from './pages/cycles/SentenceReview.vue';
+import SentenceTest from './pages/cycles/SentenceTest.vue';
 
 const routes = [
   { path: '/', component: Index },
@@ -17,6 +18,7 @@ const routes = [
   { path: '/cycles/review-vocabulary/:id', component: VocabularyReview },
   { path: '/cycles/edit-sentence/:id?', component: SentenceEdit },
   { path: '/cycles/review-sentence/:id', component: SentenceReview },
+  { path: '/cycles/test-sentence/:id', component: SentenceTest },
 ];
 
 const router = new VueRouter({

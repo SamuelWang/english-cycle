@@ -29,6 +29,12 @@
               <b-dropdown-item href="#" @click="reviewCycle(cycle)"
                 >Review</b-dropdown-item
               >
+              <b-dropdown-item
+                href="#"
+                @click="testCycle(cycle)"
+                v-if="cycle.type === 'Sentence'"
+                >Test</b-dropdown-item
+              >
               <b-dropdown-item href="#" @click="editCycle(cycle)"
                 >Edit</b-dropdown-item
               >
@@ -145,6 +151,13 @@ export default {
           break;
         case 'sentence':
           this.$router.push(`/cycles/review-sentence/${cycle.id}`);
+          break;
+      }
+    },
+    testCycle(cycle) {
+      switch (cycle.type.toLowerCase()) {
+        case 'sentence':
+          this.$router.push(`/cycles/test-sentence/${cycle.id}`);
           break;
       }
     },
