@@ -4,6 +4,7 @@ const Cycle = class Cycle {
   constructor() {
     this.id = '';
     this.type = '';
+    this.translation = '';
     this.description = '';
     this.reviewedCount = 0;
     this.lastReviewDate = null;
@@ -26,7 +27,6 @@ const SentenceCycle = class SentenceCycle extends Cycle {
     super();
     this.type = 'Sentence';
     this.sentence = '';
-    this.translation = '';
   }
 };
 
@@ -42,6 +42,7 @@ const CycleConverter = {
   toFirestore(cycle) {
     const data = {
       type: cycle.type,
+      translation: cycle.translation,
       description: cycle.description,
       reviewedCount: cycle.reviewedCount,
       lastReviewDate: cycle.lastReviewDate
@@ -60,7 +61,6 @@ const CycleConverter = {
         break;
       case 'sentence':
         data.sentence = cycle.sentence;
-        data.translation = cycle.translation;
         break;
     }
 
@@ -78,7 +78,6 @@ const CycleConverter = {
       case 'sentence':
         cycle = new SentenceCycle();
         cycle.sentence = data.sentence;
-        cycle.translation = data.translation;
         break;
       default:
         cycle = new Cycle();
@@ -87,6 +86,7 @@ const CycleConverter = {
 
     cycle.id = snapshot.id;
     cycle.type = data.type;
+    cycle.translation = data.translation;
     cycle.description = data.description;
     cycle.reviewedCount = data.reviewedCount;
     cycle.lastReviewDate = data.lastReviewDate

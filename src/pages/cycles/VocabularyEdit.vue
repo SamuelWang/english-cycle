@@ -28,6 +28,25 @@
               ></b-form-input>
             </b-form-group>
           </validation-provider>
+          <validation-provider
+            name="Translation"
+            rules="required"
+            v-slot="{ errors, validated }"
+          >
+            <b-form-group
+              label="Translation*"
+              label-for="input-translation"
+              :invalid-feedback="errors[0]"
+              :state="validated ? !errors.length : null"
+            >
+              <b-form-input
+                id="input-translation"
+                v-model="cycleData.translation"
+                :state="validated ? !errors.length : null"
+                trim
+              ></b-form-input>
+            </b-form-group>
+          </validation-provider>
           <b-form-group label="Description" label-for="input-desc">
             <quill-editor v-model="cycleData.description"></quill-editor>
           </b-form-group>

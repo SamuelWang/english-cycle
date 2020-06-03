@@ -8,6 +8,8 @@
     <div class="content my-5" v-show="!loading">
       <h3>Vocabulary</h3>
       <p>{{ cycleData.vocabulary }}</p>
+      <h3>Translation</h3>
+      <p>{{ cycleData.translation }}</p>
       <h3>Description</h3>
       <p v-html="cycleData.description"></p>
 
