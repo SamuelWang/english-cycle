@@ -42,7 +42,7 @@ const CycleConverter = {
   toFirestore(cycle) {
     const data = {
       type: cycle.type,
-      translation: cycle.translation,
+      translation: cycle.translation || '',
       description: cycle.description,
       reviewedCount: cycle.reviewedCount,
       lastReviewDate: cycle.lastReviewDate

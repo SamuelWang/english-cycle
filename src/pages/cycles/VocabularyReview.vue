@@ -25,7 +25,7 @@
               autocomplete="off"
             >
               <div class="mb-2">
-                Type this vocabulary 10 times for reviewing vocabulary.
+                Type this vocabulary 5 times for reviewing vocabulary.
               </div>
               <validation-provider
                 :name="'Vocabulary ' + (index + 1)"
@@ -96,6 +96,7 @@ export default {
           self.reviewing = false;
         })
         .catch((error) => {
+          console.log(error);
           alert('Something went wrong!');
         });
     },
