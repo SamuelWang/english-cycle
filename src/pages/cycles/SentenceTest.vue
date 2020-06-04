@@ -26,7 +26,7 @@
               <p>{{ cycleData.translation }}</p>
               <validation-provider
                 :name="'Sentence'"
-                :rules="'required|is:' + cycleData.sentence"
+                :rules="{ required: true, is: cycleData.sentence }"
                 v-slot="{ errors, validated }"
               >
                 <b-form-group

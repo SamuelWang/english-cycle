@@ -28,7 +28,7 @@
               <p>{{ cycleData.translation }}</p>
               <validation-provider
                 :name="'Sentence ' + (index + 1)"
-                :rules="'required|is:' + cycleData.sentence"
+                :rules="{ required: true, is: cycleData.sentence }"
                 v-slot="{ errors, validated }"
                 v-for="(question, index) in questions"
                 :key="index"

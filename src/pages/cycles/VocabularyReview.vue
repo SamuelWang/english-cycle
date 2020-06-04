@@ -29,7 +29,7 @@
               </div>
               <validation-provider
                 :name="'Vocabulary ' + (index + 1)"
-                :rules="'required|is:' + cycleData.vocabulary"
+                :rules="{ required: true, is: cycleData.vocabulary }"
                 v-slot="{ errors, validated }"
                 v-for="(question, index) in questions"
                 :key="index"
